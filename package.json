@@ -16,7 +16,7 @@
 		"create:db": "psql -U bibliotech < data/create-db.sql",
 		"seed:db": "psql -U bibliotech < data/seed-db.sql",
 		"update:user": "psql -U bibliotech < data/seed-user-db.sql",
-		"reset:db": "npm run create:db && npm run seed:db && npm run update:user",
+		"reset:db": "pnpm run create:db && npm run seed:db && npm run update:user",
 		"build": "tsc",
 		"start": "node dist/index.js"
 	},

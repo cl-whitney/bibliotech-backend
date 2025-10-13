@@ -48,7 +48,7 @@ VALUES
 ('Select DB', 'Basic SQL select example', 'SELECT * FROM users;', 14, 3);
 
 -- Link snippets and tags
-INSERT INTO snippet_tag (snippet_id, tag_id)
+INSERT INTO snippets_Has_tags (snippet_id, tag_id)
 VALUES
 (1, 1),
 (1, 2),

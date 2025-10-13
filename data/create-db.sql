@@ -1,11 +1,14 @@
 BEGIN;
 
 -- Drop tables
-DROP TABLE IF EXISTS snippet_tag;
-DROP TABLE IF EXISTS snippet;
-DROP TABLE IF EXISTS tag;
-DROP TABLE IF EXISTS language;
-DROP TABLE IF EXISTS "user";
+DROP TABLE IF EXISTS snippet_tag CASCADE;
+DROP TABLE IF EXISTS snippet CASCADE;
+DROP TABLE IF EXISTS tag CASCADE;
+DROP TABLE IF EXISTS language CASCADE;
+DROP TABLE IF EXISTS "user" CASCADE;
+
+-- Drop ENUM
+DROP TYPE IF EXISTS user_role CASCADE;
 
 -- Drop domain
 DROP DOMAIN IF EXISTS email;
@@ -61,7 +64,7 @@ CREATE TABLE tag (
     updated_at    TIMESTAMPTZ
 );
 
-CREATE TABLE snippet_tag (
+CREATE TABLE snippets_Has_tags (
     snippet_id    INTEGER REFERENCES snippet(id) ON DELETE CASCADE,
     tag_id        INTEGER REFERENCES tag(id) ON DELETE CASCADE,
     PRIMARY KEY (snippet_id, tag_id),
