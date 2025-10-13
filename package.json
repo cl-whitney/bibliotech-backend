@@ -13,9 +13,9 @@
 		"check": "pnpx @biomejs/biome check ./",
 		"check:fix": "pnpx @biomejs/biome check --write ./",
 		"dev": "nodemon --watch src --ext ts --exec \"node --loader ts-node/esm src/index.ts\"",
-		"create:db": "psql -U cinedelices < data/create_db.sql",
-		"seed:db": "psql -U cinedelices < data/seed_db.sql",
-		"update:user": "psql -U cinedelices < data/seed-user.sql",
+		"create:db": "psql -U bibliotech < data/create-db.sql",
+		"seed:db": "psql -U bibliotech < data/seed-db.sql",
+		"update:user": "psql -U bibliotech < data/seed-user-db.sql",
 		"reset:db": "npm run create:db && npm run seed:db && npm run update:user",
 		"build": "tsc",
 		"start": "node dist/index.js"
@@ -42,7 +42,9 @@
 		"ejs": "^3.1.10",
 		"express": "^5.1.0",
 		"express-session": "^1.18.2",
-		"pg": "^8.16.3"
+		"pg": "^8.16.3",
+		"swagger-jsdoc": "^6.2.8",
+		"swagger-ui-express": "^5.0.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.5",
@@ -52,7 +54,10 @@
 		"@types/express-session": "^1.18.2",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.7.2",
+		"@types/pg": "^8.15.5",
 		"@types/supertest": "^6.0.3",
+		"@types/swagger-jsdoc": "^6.0.4",
+		"@types/swagger-ui-express": "^4.1.8",
 		"install": "^0.13.0",
 		"jest": "^30.2.0",
 		"nodemon": "^3.1.10",
