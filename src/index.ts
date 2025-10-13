@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import cors from "cors";
 import type { NextFunction, Request, Response } from "express";
 import session from "express-session";
+import { setupSwagger } from './config/swagger.js';
 import router from "./routers/router.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,7 +22,7 @@ app.use((_req: Request, res: Response, next: NextFunction) => {
 	next();
 });
 
-app.use(express.json());
+app.use(express.json());	
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
