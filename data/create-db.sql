@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS snippet_tag;
 DROP TABLE IF EXISTS snippet;
 DROP TABLE IF EXISTS tag;
 DROP TABLE IF EXISTS language;
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS "user";
 
 -- Drop domain
 DROP DOMAIN IF EXISTS email;
@@ -20,7 +20,7 @@ CHECK (
 CREATE TYPE user_role AS ENUM ('admin', 'member');
 
 -- Create tables
-CREATE TABLE user (
+CREATE TABLE "user" (
     id            INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name    TEXT NOT NULL,
     last_name     TEXT NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE snippet (
     description   TEXT,
     code          TEXT NOT NULL,
     language_id   INTEGER REFERENCES language(id) ON DELETE SET NULL,
-    user_id       INTEGER REFERENCES user(id) ON DELETE CASCADE,
+    user_id       INTEGER REFERENCES "user"(id) ON DELETE CASCADE,
     status        BOOLEAN NOT NULL DEFAULT TRUE,
     created_at    TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMPTZ
