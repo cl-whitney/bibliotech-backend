@@ -13,6 +13,8 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
+setupSwagger(app);
+
 app.set("view engine", "ejs");
 app.set("views", join(__dirname, "/views"));
 app.use(express.static(join(__dirname, "public")));
@@ -58,5 +60,5 @@ const port = process.env.PORT || 3000;
 const base_url = process.env.BASE_URL || "http://localhost";
 
 app.listen(port, () => {
-	console.log(`Listening on ${base_url}:${port}`);
+	console.log(`Listening on ${base_url}:${port} || SWAGGER : ${base_url}:${port}/api-docs`);
 });
