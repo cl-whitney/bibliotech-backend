@@ -23,12 +23,16 @@ export class TagDataMapper {
 		return rows[0];
 	}
 
-	async updateTag(id: number, tag: Partial<Tag>): Promise<Tag | null> {
+	async updateTag(data: 
+		{ id: number; 
+			name: string; 
+			updated_at?: string }
+		): Promise<Tag | null> {
 		const { rows } = await client.query(
 			`UPDATE tag 
-             SET name = $1, updated_at = CURRENT_TIMESTAMP 
-             WHERE id = $2 RETURNING *`,
-			[tag.name, id],
+			 SET name = $1, updated_at = $2 
+			 WHERE id = $3 RETURNING *`,
+			[data.name, data.updated_at ?? new Date().toISOString(), data.id],
 		);
 		return rows[0] || null;
 	}

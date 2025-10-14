@@ -30,22 +30,28 @@ export class SnippetDataMapper {
 		return rows[0];
 	}
 
-	async updateSnippet(
-		id: number,
-		snippet: Partial<Snippet>,
-	): Promise<Snippet | null> {
+	async updateSnippet(data: {
+		id: number;
+		title: string;
+		description: string;
+		code: string;
+		language_id: number;
+		user_id: number;
+		status?: boolean;
+		updated_at?: string;
+	}): Promise<Snippet | null> {
 		const { rows } = await client.query(
 			`UPDATE snippet 
-             SET title = $1, description = $2, code = $3, language_id = $4, user_id = $5, status = $6, updated_at = CURRENT_TIMESTAMP 
-             WHERE id = $7 RETURNING *`,
+			 SET title = $1, description = $2, code = $3, language_id = $4, user_id = $5, status = $6, updated_at = CURRENT_TIMESTAMP 
+			 WHERE id = $7 RETURNING *`,
 			[
-				snippet.title,
-				snippet.description,
-				snippet.code,
-				snippet.language_id,
-				snippet.user_id,
-				snippet.status,
-				id,
+				data.title,
+				data.description,
+				data.code,
+				data.language_id,
+				data.user_id,
+				data.status ?? true,
+				data.id,
 			],
 		);
 		return rows[0] || null;
