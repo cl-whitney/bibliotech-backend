@@ -6,3 +6,5 @@ declare module "express-session" {
 		user?: SessionUser;
 	}
 }
+
+export type { SessionUser };
