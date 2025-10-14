@@ -1,9 +1,8 @@
-import 'express-session';
-import type { User } from './types';
+import "express-session";
+import type { User } from "./types";
 
-
-declare module 'express-session' {
-    interface SessionData {
-      user?: User;
-    }
-  }
+declare module "express-session" {
+	interface SessionData {
+		user?: User;
+	}
+}
