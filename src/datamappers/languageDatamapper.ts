@@ -2,10 +2,10 @@ import { client } from "../database/client.js";
 import type { Language } from "../types/types.js";
 
 export default new (class languageDatamapper {
-	async findLanguageById(id: number): Promise<Language | null> {
+	async findLanguageBySlug(slug: string): Promise<Language | null> {
 		const { rows } = await client.query(
-			"SELECT * FROM language WHERE id = $1",
-			[id],
+			"SELECT * FROM language WHERE slug = $1",
+			[slug],
 		);
 		return rows[0] || null;
 	}

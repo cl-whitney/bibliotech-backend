@@ -13,12 +13,12 @@ const languageController = {
 	},
 
 	async show(req: Request, res: Response) {
-		const id = Number(req.params.id);
-		if (!id) {
-			return res.status(400).json({ error: "Invalid language ID" });
+		const slug = req.params.slug;
+		if (!slug || typeof slug !== "string") {
+			return res.status(400).json({ error: "Invalid language slug" });
 		}
 
-		const language = await languageDataMapper.findLanguageById(id);
+		const language = await languageDataMapper.findLanguageBySlug(slug);
 
 		if (!language) {
 			return res.status(404).json({ error: "Language not found" });
