@@ -1,7 +1,7 @@
 import { client } from "../database/client.js";
 import type { Snippet } from "../types/types.js";
 
-export class SnippetDataMapper {
+export default new (class SnippetDataMapper {
 	async findSnippetById(id: number): Promise<Snippet | null> {
 		const { rows } = await client.query("SELECT * FROM snippet WHERE id = $1", [
 			id,
@@ -60,4 +60,4 @@ export class SnippetDataMapper {
 	async deleteSnippet(id: number): Promise<void> {
 		await client.query("DELETE FROM snippet WHERE id = $1", [id]);
 	}
-}
+})();

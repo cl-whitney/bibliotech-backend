@@ -4,15 +4,18 @@
  * @param {string} email
  * @returns {RegExpMatchArray|null}
  */
-import validator from "validator";
 
 /**
  * This function validates emails using the 'validator' library.
  * @param {string} email
  * @returns {boolean}
  */
-function validateEmail(email: string): boolean {
-  return validator.isEmail(email);
+function validateEmail(email: string): RegExpMatchArray | null {
+	return String(email)
+		.toLowerCase()
+		.match(
+			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+		);
 }
 
 export default validateEmail;

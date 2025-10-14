@@ -52,3 +52,6 @@ export interface SnippetHasTag {
 	created_at: Date;
 	updated_at?: Date;
 }
+
+// Session-safe user type (we should never store password in session)
+export type SessionUser = Omit<User, "password">;
