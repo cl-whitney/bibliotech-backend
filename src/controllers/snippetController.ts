@@ -29,7 +29,7 @@ const snippetController = {
 	},
 
 	async store(req: Request, res: Response) {
-		const { title, description, code, language_id, status = true } = req.body;
+		const { title, description, code, language_id, tagIds, status = true } = req.body;
 		const user_id = (req as any).user?.id;
 
 		if (
@@ -50,14 +50,15 @@ const snippetController = {
 			user_id,
 			language_id,
 			status,
-		} as Snippet);
+		} as Snippet, 
+			tagIds);
 
 		return res.status(201).json(newSnippet);
 	},
 
 	async update(req: Request, res: Response) {
 		const id = Number(req.params.id);
-		const { title, description, code, language_id, status = true } = req.body;
+		const { title, description, code, language_id, tagIds = [], status = true } = req.body;
 		const user_id = (req as any).user?.id;
 
 		if (!id) {
@@ -83,6 +84,7 @@ const snippetController = {
 			language_id,
 			user_id,
 			status,
+			tagIds,
 		});
 
 		if (!updatedSnippet) {
