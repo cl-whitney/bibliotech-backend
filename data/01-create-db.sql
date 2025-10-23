@@ -1,7 +1,7 @@
 BEGIN;
 
 -- Drop tables
-DROP TABLE IF EXISTS snippet_tag CASCADE;
+DROP TABLE IF EXISTS snippets_has_tags CASCADE;
 DROP TABLE IF EXISTS snippet CASCADE;
 DROP TABLE IF EXISTS tag CASCADE;
 DROP TABLE IF EXISTS language CASCADE;
@@ -64,7 +64,7 @@ CREATE TABLE tag (
     updated_at    TIMESTAMPTZ
 );
 
-CREATE TABLE snippets_Has_tags (
+CREATE TABLE snippets_has_tags (
     snippet_id    INTEGER REFERENCES snippet(id) ON DELETE CASCADE,
     tag_id        INTEGER REFERENCES tag(id) ON DELETE CASCADE,
     PRIMARY KEY (snippet_id, tag_id),

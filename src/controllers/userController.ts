@@ -1,4 +1,4 @@
-import userDataMapper from "../datamappers/userDatamapper";
+import userDataMapper from "../datamappers/userDatamapper.js";
 import type { Request, Response } from "express";
 
 const userController = {

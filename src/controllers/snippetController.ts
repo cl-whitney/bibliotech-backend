@@ -1,6 +1,6 @@
-import snippetDataMapper from "../datamappers/snippetDatamapper";
+import snippetDataMapper from "../datamappers/snippetDatamapper.js";
 import type { Request, Response } from "express";
-import type { Snippet } from "../types/types";
+import type { Snippet } from "../types/types.js";
 
 const snippetController = {
 	async index(_req: Request, res: Response) {

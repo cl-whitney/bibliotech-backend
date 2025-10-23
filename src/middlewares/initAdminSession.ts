@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
-import type { Role } from "../types/types";
+import type { Role } from "../types/types.js";
 
-import type { SessionUser } from "../types/express-session";
+import type { SessionUser } from "../types/express-session.js";
 
 declare module "express-session" {
 	interface SessionData {

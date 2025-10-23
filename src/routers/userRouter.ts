@@ -1,13 +1,13 @@
 import { Router } from "express";
-import userController from "../controllers/userController";
-import { catchErrors } from "../middlewares/errorsHandlers/handlers";
-import isAuth from "../middlewares/isAuth";
+import userController from "../controllers/userController.js";
+import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
+import isAuth from "../middlewares/isAuth.js";
 
-const UsersRouter = Router();
+const usersRouter = Router();
 
-UsersRouter.get("/", catchErrors(userController.index));
-UsersRouter.get("/:id", isAuth, catchErrors(userController.show));
-UsersRouter.put("/:id", isAuth, catchErrors(userController.update));
-UsersRouter.delete("/:id", isAuth, catchErrors(userController.delete));
+usersRouter.get('/', catchErrors(userController.index));
+usersRouter.get('/:id', isAuth, catchErrors(userController.show));
+usersRouter.put('/:id', isAuth, catchErrors(userController.update));
+usersRouter.delete('/:id', isAuth, catchErrors(userController.delete));
 
-export default UsersRouter;
+export default usersRouter;

@@ -54,6 +54,13 @@ app.use(
 	}),
 );
 
+app.get(
+  '/',
+  (_req: Request, res: Response, _next: NextFunction) => {
+    res.redirect('/admin/login');
+  }
+);
+
 app.use(router);
 
 const port = process.env.PORT || 3000;

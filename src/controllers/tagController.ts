@@ -1,6 +1,6 @@
-import tagDataMapper from "../datamappers/tagDatamapper";
+import tagDataMapper from "../datamappers/tagDatamapper.js";
 import type { Request, Response } from "express";
-import type { Tag } from "../types/types";
+import type { Tag } from "../types/types.js";
 
 const tagController = {
 	async index(_req: Request, res: Response) {

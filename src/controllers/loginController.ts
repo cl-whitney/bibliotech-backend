@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
 import passwordValidator from "password-validator";
-import userDatamapper from "../datamappers/userDatamapper";
-import Scrypt from "../helpers/scrypt";
-import { generateAuthenticationToken } from "../helpers/token";
-import validateEmail from "../helpers/validateEmail";
+import userDatamapper from "../datamappers/userDatamapper.js";
+import Scrypt from "../helpers/scrypt.js";
+import { generateAuthenticationToken } from "../helpers/token.js";
+import validateEmail from "../helpers/validateEmail.js";
 
 const loginController = {
 	async login(req: Request, res: Response, _next: NextFunction): Promise<void> {

@@ -1,4 +1,4 @@
-import languageDataMapper from "../datamappers/languageDatamapper";
+import languageDataMapper from "../datamappers/languageDatamapper.js";
 import type { Request, Response } from "express";
 
 const languageController = {

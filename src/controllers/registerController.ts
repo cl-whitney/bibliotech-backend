@@ -1,8 +1,8 @@
-import userDataMapper from "../datamappers/userDatamapper";
+import userDataMapper from "../datamappers/userDatamapper.js";
 import type { Request, Response } from "express";
-import type { User } from "../types/types";
-import Scrypt from "../helpers/scrypt";
-import validateEmail from "../helpers/validateEmail";
+import type { User } from "../types/types.js";
+import Scrypt from "../helpers/scrypt.js";
+import validateEmail from "../helpers/validateEmail.js";
 import type { NextFunction } from "express";
 
 const registerController = {

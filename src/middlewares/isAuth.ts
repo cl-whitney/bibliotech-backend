@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { verifyJwtToken } from "../helpers/token";
+import { verifyJwtToken } from "../helpers/token.js";
 
 function isAuth(req: Request, res: Response, next: NextFunction): void {
 	const accessToken = req.headers.authorization?.split("Bearer ")[1];

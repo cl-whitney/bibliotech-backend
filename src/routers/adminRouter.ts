@@ -1,11 +1,11 @@
 import { Router } from "express";
-import adminController from "../controllers/adminController";
-import snippetController from "../controllers/snippetController";
-import userController from "../controllers/userController";
-import tagController from "../controllers/tagController";
-import languageController from "../controllers/languageController";
-import { catchErrors } from "../middlewares/errorsHandlers/handlers";
-import isAdmin from "../middlewares/isAdmin";
+import adminController from "../controllers/adminController.js";
+import snippetController from "../controllers/snippetController.js";
+import userController from "../controllers/userController.js";
+import tagController from "../controllers/tagController.js";
+import languageController from "../controllers/languageController.js";
+import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
+import isAdmin from "../middlewares/isAdmin.js";
 
 const adminRouter = Router();
 

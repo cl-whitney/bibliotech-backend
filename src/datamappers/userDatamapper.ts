@@ -1,4 +1,4 @@
-import { client } from "../database/client";
+import { client } from "../database/client.js";
 import type { User } from "../types/types.ts";
 
 export default new (class userDataMapper {

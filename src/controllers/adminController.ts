@@ -1,11 +1,11 @@
 import type { NextFunction, Request, Response } from "express";
 import passwordValidator from "password-validator";
-import adminDatamapper from "../datamappers/adminDatamapper";
-import userDatamapper from "../datamappers/userDatamapper";
-import Scrypt from "../helpers/scrypt";
-import validateEmail from "../helpers/validateEmail";
-import { Role } from "../types/types";
-import { User, type SessionUser } from "../types/types";
+import adminDatamapper from "../datamappers/adminDatamapper.js";
+import userDatamapper from "../datamappers/userDatamapper.js";
+import Scrypt from "../helpers/scrypt.js";
+import validateEmail from "../helpers/validateEmail.js";
+import { Role } from "../types/types.js";
+import { User, type SessionUser } from "../types/types.js";
 
 const adminController = {
 	async index(_req: Request, res: Response) {
@@ -23,8 +23,8 @@ const adminController = {
 		res: Response,
 		_next: NextFunction,
 	): Promise<void> {
-		res.locals.page = "connexion";
-		res.render("connexion", { page: "connexion", errors: [] });
+		res.locals.page = "login";
+		res.render("login", { page: "login", errors: [] });
 	},
 
 	async login(req: Request, res: Response, _next: NextFunction): Promise<void> {

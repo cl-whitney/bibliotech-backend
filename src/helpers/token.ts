@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import jwt, { type Algorithm } from "jsonwebtoken";
-import auth from "../helpers/jwt";
+import auth from "../helpers/jwt.js";
 
 const { audience, expiresIn, issuer, secret, type } = auth.accessToken;
 

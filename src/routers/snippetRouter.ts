@@ -1,7 +1,7 @@
 import { Router } from "express";
-import snippetController from "../controllers/snippetController";
-import { catchErrors } from "../middlewares/errorsHandlers/handlers";
-import isAuth from "../middlewares/isAuth";
+import snippetController from "../controllers/snippetController.js";
+import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
+import isAuth from "../middlewares/isAuth.js";
 
 const snippetRouter = Router();
 

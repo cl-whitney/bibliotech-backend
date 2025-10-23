@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { Role } from "../types/types";
+import { Role } from "../types/types.js";
 
 function isAdmin(req: Request, res: Response, next: NextFunction): void {
 	const user = req.session.user;

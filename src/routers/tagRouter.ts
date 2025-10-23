@@ -1,7 +1,7 @@
 import { Router } from "express";
-import tagController from "../controllers/tagController";
-import { catchErrors } from "../middlewares/errorsHandlers/handlers";
-import isAuth from "../middlewares/isAuth";
+import tagController from "../controllers/tagController.js";
+import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
+import isAuth from "../middlewares/isAuth.js";
 
 const tagRouter = Router();
 
