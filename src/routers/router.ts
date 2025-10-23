@@ -9,12 +9,23 @@ import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
 
 const router = Router();
 
-router.use("/api/auth", authRouter);
-router.use("/admin", adminRouter);
-router.use("/api/snippets", snippetRouter);
-router.use("/api/users", userRouter);
-router.use("/api/tags", tagRouter);
-router.use("/api/languages", languageRouter);
+// Auth routers
+router.use("/api/auth", catchErrors(authRouter));
+
+// Admin routers
+router.use("/admin", catchErrors(adminRouter));
+
+// Snippet routers
+router.use("/api/snippets", catchErrors(snippetRouter));
+
+// User routers
+router.use("/api/users", catchErrors(userRouter));
+
+// Tag routers
+router.use("/api/tags", catchErrors(tagRouter));
+
+// Language routers
+router.use("/api/languages", catchErrors(languageRouter));
 
 router.use(catchErrors);
 

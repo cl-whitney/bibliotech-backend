@@ -14,6 +14,8 @@ const registerController = {
 		const { first_name, last_name, email, password, role } = req.body;
 		const errors: string[] = [];
 
+		const assignedRole = role === "admin" ? "admin" : "member";
+
 		if (!first_name) {
 			errors.push('Le champ "first_name" est obligatoire');
 		}
@@ -47,7 +49,7 @@ const registerController = {
 			last_name,
 			email,
 			password: hashedPassword,
-			role,
+			role : assignedRole,
 		} as User);
 
 		const { password: _, ...safeUser } = newUser;

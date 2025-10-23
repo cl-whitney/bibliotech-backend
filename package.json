@@ -13,9 +13,9 @@
 		"check": "pnpx @biomejs/biome check ./",
 		"check:fix": "pnpx @biomejs/biome check --write ./",
 		"dev": "nodemon --watch src --ext ts --exec tsx src/index.ts",
-		"create:db": "psql -U bibliotech < data/create-db.sql",
-		"seed:db": "psql -U bibliotech < data/seed-db.sql",
-		"seed:user": "psql -U bibliotech < data/seed-user-db.sql",
+		"create:db": "psql -U bibliotech < data/01-create-db.sql",
+		"seed:db": "psql -U bibliotech < data/03-seed-db.sql",
+		"seed:user": "psql -U bibliotech < data/02-seed-user-db.sql",
 		"reset:db": "pnpm run create:db && pnpm run seed:user && pnpm run seed:db",
 		"build": "tsc",
 		"start": "node dist/index.js"

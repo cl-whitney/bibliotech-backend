@@ -77,7 +77,7 @@ const adminController = {
 			res.status(400);
 		}
 		if (!user) {
-			return res.status(403).render("connexion", {
+			return res.status(403).render("login", {
 				errors: ["Vous n'êtes pas autorisé à acceder à cet espace"],
 			});
 		}
@@ -85,7 +85,7 @@ const adminController = {
 		console.log("Objet user:", { user });
 
 		if (user.role !== Role.Admin) {
-			return res.status(403).render("connexion", {
+			return res.status(403).render("login", {
 				errors: ["Email ou mot de passe incorrect ou accès non autorisé"],
 			});
 		}
@@ -96,18 +96,18 @@ const adminController = {
 		const { password: _, ...safeUser } = user;
 		req.session.user = safeUser as SessionUser;
 
-		res.redirect("/admin/administration");
+		res.redirect("/admin/dashboard");
 	},
 
 	async show(req: Request, res: Response, _next: NextFunction): Promise<void> {
 		const user = req.session.user;
 
 		if (!user || user.role !== Role.Admin) {
-			return res.status(403).render("connexion", {
+			return res.status(403).render("login", {
 				errors: ["Email ou mot de passe incorrect ou accès non autorisé"],
 			});
 		}
-		res.render("back-office");
+		res.render("dashboard");
 	},
 
 	async adminLogout(
@@ -122,7 +122,7 @@ const adminController = {
 				console.error("Erreur lors de la destruction de la session :", err);
 				res.status(500).json({ error: "Erreur interne du serveur" });
 			}
-			res.redirect("/admin/connexion");
+			res.redirect("/admin/login");
 		});
 	},
 };

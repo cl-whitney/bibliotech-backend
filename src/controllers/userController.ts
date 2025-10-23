@@ -29,7 +29,7 @@ const userController = {
 
 	async update(req: Request, res: Response) {
 		const id = Number(req.params.id);
-		const { first_name, last_name } = req.body;
+		const { first_name, last_name, email, password } = req.body;
 
 		if (!id) {
 			return res.status(400).json({ error: "Invalid user ID" });
@@ -43,6 +43,8 @@ const userController = {
 			id,
 			first_name,
 			last_name,
+			email, 
+			password,
 		});
 
 		if (!updatedUser) {

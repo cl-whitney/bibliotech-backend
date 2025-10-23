@@ -27,8 +27,10 @@ const snippetController = {
 
 		return res.json(snippet);
 	},
+
 	async store(req: Request, res: Response) {
-		const { title, description, code, user_id, language_id, status } = req.body;
+		const { title, description, code, language_id, status = true } = req.body;
+		const user_id = (req as any).user?.id;
 
 		if (
 			!title ||
@@ -55,7 +57,8 @@ const snippetController = {
 
 	async update(req: Request, res: Response) {
 		const id = Number(req.params.id);
-		const { title, description, code, language_id, user_id, status } = req.body;
+		const { title, description, code, language_id, status = true } = req.body;
+		const user_id = (req as any).user?.id;
 
 		if (!id) {
 			return res.status(400).json({ error: "Invalid snippet ID" });

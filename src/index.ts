@@ -13,8 +13,6 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-setupSwagger(app);
-
 app.set("view engine", "ejs");
 app.set("views", join(__dirname, "/views"));
 app.use(express.static(join(__dirname, "public")));
@@ -65,6 +63,8 @@ app.use(router);
 
 const port = process.env.PORT || 3000;
 const base_url = process.env.BASE_URL || "http://localhost";
+
+setupSwagger(app);
 
 app.listen(port, () => {
 	console.log(

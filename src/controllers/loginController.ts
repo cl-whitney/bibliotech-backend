@@ -83,7 +83,7 @@ const loginController = {
 	 * Cette route ne fait que confirmer que l'utilisateur "a été déconnecté".
 	 */
 	async logout(_: Request, res: Response, _next: NextFunction): Promise<void> {
-		res.status(200).json({ message: "Déconnexion réussie (client)" });
+		res.status(200).json({ message: "Déconnexion réussie" });
 	},
 };
 
