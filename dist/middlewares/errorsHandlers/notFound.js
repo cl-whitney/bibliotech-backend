@@ -6,13 +6,13 @@
  * throw new HttpError('Not Found', 404);
  */
 class HttpError extends Error {
-    constructor(message, status) {
-        super(message);
-        this.status = status;
-    }
+	constructor(message, status) {
+		super(message);
+		this.status = status;
+	}
 }
 function notFound(_req, _res, next) {
-    const err = new HttpError("La ressource demandée n'existe pas", 404);
-    next(err);
+	const err = new HttpError("La ressource demandée n'existe pas", 404);
+	next(err);
 }
 export default notFound;

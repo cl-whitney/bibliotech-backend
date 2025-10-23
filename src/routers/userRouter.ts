@@ -5,7 +5,7 @@ import isAuth from "../middlewares/isAuth.js";
 
 const usersRouter = Router();
 
-/** Get all users 
+/** Get all users
  * @swagger
  * /users:
  *   get:
@@ -14,7 +14,7 @@ const usersRouter = Router();
  *       200:
  *         description: "A list of users"
  */
-usersRouter.get('/', catchErrors(userController.index));
+usersRouter.get("/", catchErrors(userController.index));
 
 /** Get user by ID
  * @swagger
@@ -34,7 +34,7 @@ usersRouter.get('/', catchErrors(userController.index));
  *       404:
  *         description: "User not found"
  */
-usersRouter.get('/:id', isAuth, catchErrors(userController.show));
+usersRouter.get("/:id", isAuth, catchErrors(userController.show));
 
 /** Update user by ID
  * @swagger
@@ -54,7 +54,7 @@ usersRouter.get('/:id', isAuth, catchErrors(userController.show));
  *       404:
  *         description: "User not found"
  */
-usersRouter.patch('/:id', isAuth, catchErrors(userController.update));
+usersRouter.patch("/:id", isAuth, catchErrors(userController.update));
 
 /** Delete user by ID
  * @swagger
@@ -74,6 +74,6 @@ usersRouter.patch('/:id', isAuth, catchErrors(userController.update));
  *       404:
  *         description: "User not found"
  */
-usersRouter.delete('/:id', isAuth, catchErrors(userController.delete));
+usersRouter.delete("/:id", isAuth, catchErrors(userController.delete));
 
 export default usersRouter;

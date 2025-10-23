@@ -15,7 +15,7 @@ const authRouter = Router();
  *         description: "User registered successfully"
  *       400:
  *         description: "Bad request"
-*/
+ */
 authRouter.post("/signup", catchErrors(signupController.signup));
 
 /** Login
@@ -28,7 +28,7 @@ authRouter.post("/signup", catchErrors(signupController.signup));
  *         description: "Login successful"
  *       401:
  *         description: "Unauthorized"
-*/
+ */
 authRouter.post("/login", catchErrors(loginController.login));
 
 /** Logout
@@ -39,7 +39,7 @@ authRouter.post("/login", catchErrors(loginController.login));
  *     responses:
  *       200:
  *         description: "Logout successful"
-*/
+ */
 authRouter.post("/logout", catchErrors(loginController.logout));
 
 export default authRouter;

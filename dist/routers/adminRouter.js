@@ -19,9 +19,21 @@ adminRouter.get("/snippets", isAdmin, catchErrors(snippetController.index));
 adminRouter.get("/snippets/form", isAdmin, catchErrors(snippetController.show));
 adminRouter.post("/snippets", isAdmin, catchErrors(snippetController.store));
 adminRouter.get("/snippets/:id", isAdmin, catchErrors(snippetController.show));
-adminRouter.get("/snippets/:id/edit", isAdmin, catchErrors(snippetController.show));
-adminRouter.patch("/snippets/:id", isAdmin, catchErrors(snippetController.update));
-adminRouter.post("/snippets/:id/delete", isAdmin, catchErrors(snippetController.delete));
+adminRouter.get(
+	"/snippets/:id/edit",
+	isAdmin,
+	catchErrors(snippetController.show),
+);
+adminRouter.patch(
+	"/snippets/:id",
+	isAdmin,
+	catchErrors(snippetController.update),
+);
+adminRouter.post(
+	"/snippets/:id/delete",
+	isAdmin,
+	catchErrors(snippetController.delete),
+);
 // User management
 adminRouter.get("/users", isAdmin, catchErrors(userController.index));
 adminRouter.patch("/users/:id", isAdmin, catchErrors(userController.update));
@@ -34,5 +46,9 @@ adminRouter.post("/tags", isAdmin, catchErrors(tagController.show));
 adminRouter.post("/tags", isAdmin, catchErrors(tagController.store));
 // Language management
 adminRouter.get("/languages", isAdmin, catchErrors(languageController.index));
-adminRouter.get("/languages/:id", isAdmin, catchErrors(languageController.show));
+adminRouter.get(
+	"/languages/:id",
+	isAdmin,
+	catchErrors(languageController.show),
+);
 export default adminRouter;

@@ -49,7 +49,7 @@ const registerController = {
 			last_name,
 			email,
 			password: hashedPassword,
-			role : assignedRole,
+			role: assignedRole,
 		} as User);
 
 		const { password: _, ...safeUser } = newUser;
