@@ -5,6 +5,26 @@ import isAuth from "../middlewares/isAuth.js";
 
 const snippetRouter = Router();
 
+/** Search snippets
+ * @swagger
+ * /snippets/search:
+ *   get:
+ *     summary: "Search snippets by query"
+ *     parameters:
+ *       - in: query
+ *         name: q
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: "The search query"
+ *     responses:
+ *       200:
+ *         description: "Search results"
+ *       400:
+ *         description: "Missing search query"
+ */
+snippetRouter.get('/search', catchErrors(snippetController.search));
+
 /** Get all snippets
  * @swagger
  * /snippets:

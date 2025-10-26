@@ -28,6 +28,16 @@ const snippetController = {
 		return res.json(snippet);
 	},
 
+	async search(req: Request, res: Response) {
+    const { q } = req.query;
+    if (!q || typeof q !== "string") {
+        return res.status(400).json({ error: "Missing search query" });
+    }
+    const snippets = await snippetDataMapper.findSnippetsBySearch(q);
+    return res.json(snippets);
+	},
+
+	
 	async store(req: Request, res: Response) {
 		const { title, description, code, language_id, tagIds, status = true } = req.body;
 		const user_id = (req as any).user?.id;
