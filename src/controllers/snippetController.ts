@@ -29,13 +29,20 @@ const snippetController = {
 	},
 
 	async search(req: Request, res: Response) {
-    const { q } = req.query;
-    if (!q || typeof q !== "string") {
-        return res.status(400).json({ error: "Missing search query" });
-    }
+  const { q } = req.query;
+
+  if (!q || typeof q !== "string") {
+    return res.status(400).json({ error: "Missing search query" });
+  }
+
+  try {
     const snippets = await snippetDataMapper.findSnippetsBySearch(q);
     return res.json(snippets);
-	},
+  } catch (error) {
+    console.error("Erreur lors de la recherche :", error);
+    return res.status(500).json({ error: "Erreur serveur lors de la recherche" });
+  }
+},
 
 	
 	async store(req: Request, res: Response) {

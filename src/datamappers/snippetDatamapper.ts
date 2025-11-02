@@ -64,36 +64,48 @@ export default new (class SnippetDataMapper {
 	}
 
 	async findSnippetsBySearch(query: string): Promise<Snippet[]> {
-    const { rows } = await client.query(`
-        SELECT 
-            s.*,
-            json_build_object(
-                'id', l.id,
-                'name', l.name,
-                'slug', l.slug,
-                'status', l.status,
-                'created_at', l.created_at,
-                'updated_at', l.updated_at
-            ) AS language,
-            (
-                SELECT json_agg(json_build_object(
-                    'id', t.id,
-                    'name', t.name,
-                    'status', t.status,
-                    'created_at', t.created_at,
-                    'updated_at', t.updated_at
-                ))
-                FROM tag t
-                JOIN snippets_has_tags st ON st.tag_id = t.id
-                WHERE st.snippet_id = s.id
-            ) AS tags
-        FROM snippet s
-        LEFT JOIN language l ON l.id = s.language_id
-        WHERE LOWER(s.title) LIKE LOWER('%' || $1 || '%')
-           OR LOWER(s.description) LIKE LOWER('%' || $1 || '%')
-    `, [query]);
-    return rows;
+  const { rows } = await client.query(`
+    SELECT 
+        s.*,
+        json_build_object(
+            'id', l.id,
+            'name', l.name,
+            'slug', l.slug,
+            'status', l.status,
+            'created_at', l.created_at,
+            'updated_at', l.updated_at
+        ) AS language,
+        (
+            SELECT json_agg(json_build_object(
+                'id', t.id,
+                'name', t.name,
+                'status', t.status,
+                'created_at', t.created_at,
+                'updated_at', t.updated_at
+            ))
+            FROM tag t
+            JOIN snippets_has_tags st ON st.tag_id = t.id
+            WHERE st.snippet_id = s.id
+        ) AS tags
+    FROM snippet s
+    LEFT JOIN language l ON l.id = s.language_id
+    LEFT JOIN snippets_has_tags sht ON sht.snippet_id = s.id
+    LEFT JOIN tag t ON t.id = sht.tag_id
+    WHERE 
+      LOWER(s.title) LIKE LOWER('%' || $1 || '%')
+      OR LOWER(s.description) LIKE LOWER('%' || $1 || '%')
+      OR LOWER(l.name) LIKE LOWER('%' || $1 || '%')
+      OR LOWER(t.name) LIKE LOWER('%' || $1 || '%')
+    GROUP BY s.id, l.id
+    ORDER BY s.created_at DESC
+  `, [query]);
+
+  return rows.map(r => ({
+    ...r,
+    tags: r.tags ?? [],
+  }));
 }
+
 
 	async createSnippet(snippet: Snippet, tagIds: number[] = []): Promise<Snippet> {
 		const { rows } = await client.query(
