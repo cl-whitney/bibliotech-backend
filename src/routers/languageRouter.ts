@@ -14,7 +14,7 @@ const languageRouter = Router();
  *       200:
  *         description: "A list of languages"
  */
-languageRouter.get("/", catchErrors(languageController.index));
+languageRouter.get("/", isAuth, catchErrors(languageController.index));
 
 /** Get language by slug
  * @swagger

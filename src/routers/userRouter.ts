@@ -14,7 +14,7 @@ const usersRouter = Router();
  *       200:
  *         description: "A list of users"
  */
-usersRouter.get("/", catchErrors(userController.index));
+usersRouter.get("/", isAuth, catchErrors(userController.index));
 
 /** Get user by ID
  * @swagger
