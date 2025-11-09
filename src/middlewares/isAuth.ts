@@ -23,7 +23,6 @@ function isAuth(req: Request, res: Response, next: NextFunction): void {
 		return;
 	}
 
-	// Injection de l'objet user dans la requête, avec id et email
 	(req as any).user = {
 		id: decodedToken.id,
 		email: decodedToken.email,
