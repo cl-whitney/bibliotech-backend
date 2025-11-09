@@ -14,7 +14,7 @@ const tagRouter = Router();
  *       200:
  *         description: "A list of tags"
  */
-tagRouter.get("/", catchErrors(tagController.index));
+tagRouter.get("/", isAuth, catchErrors(tagController.index));
 
 /** Get tag by ID
  * @swagger
