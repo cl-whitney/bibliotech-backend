@@ -49,15 +49,18 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 10
-
-      - name: Verify pnpm
+      - name: Install pnpm
         run: |
-          which pnpm
-          pnpm -v
+          npm install -g pnpm
+          echo "$(npm bin -g)" >> $GITHUB_PATH
+
+      - name: Debug PATH and pnpm
+        run: |
+          echo "PATH=$PATH"
+          echo "npm global bin=$(npm bin -g)"
+          ls -l $(npm bin -g)
+          which pnpm || echo "pnpm not found"
+          pnpm -v || echo "pnpm version not available"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
