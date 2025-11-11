@@ -23,7 +23,7 @@ const snippetRouter = Router();
  *       400:
  *         description: "Missing search query"
  */
-snippetRouter.get('/search', isAuth, catchErrors(snippetController.search));
+snippetRouter.get("/search", isAuth, catchErrors(snippetController.search));
 
 /** Get all snippets
  * @swagger

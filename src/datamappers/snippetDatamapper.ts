@@ -33,7 +33,8 @@ export default new (class SnippetDataMapper {
 	}
 
 	async findSnippetById(id: number): Promise<Snippet | null> {
-		const { rows } = await client.query(`
+		const { rows } = await client.query(
+			`
 		SELECT 
 			s.*,
 			json_build_object(
@@ -59,12 +60,15 @@ export default new (class SnippetDataMapper {
 		FROM snippet s
 		LEFT JOIN language l ON l.id = s.language_id
 		WHERE s.id = $1
-	`, [id]);
+	`,
+			[id],
+		);
 		return rows[0] || null;
 	}
 
 	async findSnippetsBySearch(query: string): Promise<Snippet[]> {
-  const { rows } = await client.query(`
+		const { rows } = await client.query(
+			`
     SELECT 
         s.*,
         json_build_object(
@@ -98,16 +102,20 @@ export default new (class SnippetDataMapper {
       OR LOWER(t.name) LIKE LOWER('%' || $1 || '%')
     GROUP BY s.id, l.id
     ORDER BY s.created_at DESC
-  `, [query]);
+  `,
+			[query],
+		);
 
-  return rows.map(r => ({
-    ...r,
-    tags: r.tags ?? [],
-  }));
-}
+		return rows.map((r) => ({
+			...r,
+			tags: r.tags ?? [],
+		}));
+	}
 
-
-	async createSnippet(snippet: Snippet, tagIds: number[] = []): Promise<Snippet> {
+	async createSnippet(
+		snippet: Snippet,
+		tagIds: number[] = [],
+	): Promise<Snippet> {
 		const { rows } = await client.query(
 			`INSERT INTO snippet (title, description, code, language_id, user_id, status) 
 		 VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
@@ -118,18 +126,21 @@ export default new (class SnippetDataMapper {
 				snippet.language_id,
 				snippet.user_id,
 				snippet.status ?? true,
-			]
+			],
 		);
 		const newSnippet = rows[0];
 
 		if (tagIds.length > 0) {
-			const values = tagIds.map((tagId) => `(${newSnippet.id}, ${tagId})`).join(", ");
-			await client.query(`INSERT INTO snippets_has_tags (snippet_id, tag_id) VALUES ${values}`);
+			const values = tagIds
+				.map((tagId) => `(${newSnippet.id}, ${tagId})`)
+				.join(", ");
+			await client.query(
+				`INSERT INTO snippets_has_tags (snippet_id, tag_id) VALUES ${values}`,
+			);
 		}
 
 		return this.findSnippetById(newSnippet.id) as Promise<Snippet>;
 	}
-
 
 	async updateSnippet(data: {
 		id: number;
@@ -153,26 +164,34 @@ export default new (class SnippetDataMapper {
 				data.user_id,
 				data.status ?? true,
 				data.id,
-			]
+			],
 		);
 		const updatedSnippet = rows[0] || null;
 
 		if (!updatedSnippet) return null;
 
 		if (data.tagIds) {
-			await client.query(`DELETE FROM snippets_has_tags WHERE snippet_id = $1`, [data.id]);
+			await client.query(
+				`DELETE FROM snippets_has_tags WHERE snippet_id = $1`,
+				[data.id],
+			);
 			if (data.tagIds.length > 0) {
-				const values = data.tagIds.map((tagId) => `(${data.id}, ${tagId})`).join(", ");
-				await client.query(`INSERT INTO snippets_has_tags (snippet_id, tag_id) VALUES ${values}`);
+				const values = data.tagIds
+					.map((tagId) => `(${data.id}, ${tagId})`)
+					.join(", ");
+				await client.query(
+					`INSERT INTO snippets_has_tags (snippet_id, tag_id) VALUES ${values}`,
+				);
 			}
 		}
 
 		return this.findSnippetById(data.id) as Promise<Snippet>;
 	}
 
-
 	async deleteSnippet(id: number): Promise<void> {
-		await client.query(`DELETE FROM snippets_has_tags WHERE snippet_id = $1`, [id]);
+		await client.query(`DELETE FROM snippets_has_tags WHERE snippet_id = $1`, [
+			id,
+		]);
 		await client.query(`DELETE FROM snippet WHERE id = $1`, [id]);
 	}
 })();

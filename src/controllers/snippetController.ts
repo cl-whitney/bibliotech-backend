@@ -29,24 +29,32 @@ const snippetController = {
 	},
 
 	async search(req: Request, res: Response) {
-  const { q } = req.query;
+		const { q } = req.query;
 
-  if (!q || typeof q !== "string") {
-    return res.status(400).json({ error: "Missing search query" });
-  }
+		if (!q || typeof q !== "string") {
+			return res.status(400).json({ error: "Missing search query" });
+		}
 
-  try {
-    const snippets = await snippetDataMapper.findSnippetsBySearch(q);
-    return res.json(snippets);
-  } catch (error) {
-    console.error("Erreur lors de la recherche :", error);
-    return res.status(500).json({ error: "Erreur serveur lors de la recherche" });
-  }
-},
+		try {
+			const snippets = await snippetDataMapper.findSnippetsBySearch(q);
+			return res.json(snippets);
+		} catch (error) {
+			console.error("Erreur lors de la recherche :", error);
+			return res
+				.status(500)
+				.json({ error: "Erreur serveur lors de la recherche" });
+		}
+	},
 
-	
 	async store(req: Request, res: Response) {
-		const { title, description, code, language_id, tagIds, status = true } = req.body;
+		const {
+			title,
+			description,
+			code,
+			language_id,
+			tagIds,
+			status = true,
+		} = req.body;
 		const user_id = (req as any).user?.id;
 
 		if (
@@ -60,22 +68,31 @@ const snippetController = {
 			return res.status(400).json({ error: "Missing required fields" });
 		}
 
-		const newSnippet = await snippetDataMapper.createSnippet({
-			title,
-			description,
-			code,
-			user_id,
-			language_id,
-			status,
-		} as Snippet, 
-			tagIds);
+		const newSnippet = await snippetDataMapper.createSnippet(
+			{
+				title,
+				description,
+				code,
+				user_id,
+				language_id,
+				status,
+			} as Snippet,
+			tagIds,
+		);
 
 		return res.status(201).json(newSnippet);
 	},
 
 	async update(req: Request, res: Response) {
 		const id = Number(req.params.id);
-		const { title, description, code, language_id, tagIds = [], status = true } = req.body;
+		const {
+			title,
+			description,
+			code,
+			language_id,
+			tagIds = [],
+			status = true,
+		} = req.body;
 		const user_id = (req as any).user?.id;
 
 		if (!id) {

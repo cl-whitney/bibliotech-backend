@@ -70,7 +70,6 @@ const loginController = {
 		});
 	},
 
-
 	async logout(_: Request, res: Response, _next: NextFunction): Promise<void> {
 		res.status(200).json({ message: "Déconnexion réussie" });
 	},

@@ -41,8 +41,8 @@ app.use(
 			"https://cl-whitney.github.io",
 			"https://bibliotech.app",
 		],
-				credentials: true,
-			}),
+		credentials: true,
+	}),
 );
 
 app.use(
