@@ -10,22 +10,10 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_DB: ${{ secrets.PG_DB }}
-          POSTGRES_USER: ${{ secrets.PG_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.PG_PWD }}
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U ${{ secrets.PG_USER }}" 
-          --health-interval 10s 
-          --health-timeout 5s 
-          --health-retries 5
-
     env:
+      PG_USER: ${{ secrets.PG_USER }}
+      PG_DB: ${{ secrets.PG_DB }}
+      PG_PWD: ${{ secrets.PG_PWD }}
       PG_URL: ${{ secrets.PG_URL }}
       SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -35,6 +23,21 @@ jobs:
       ACCESS_TOKEN_EXPIRES_IN_MS: ${{ secrets.ACCESS_TOKEN_EXPIRES_IN_MS }}
       ACCESS_TOKEN_AUDIENCE: ${{ secrets.ACCESS_TOKEN_AUDIENCE }}
       ACCESS_TOKEN_ISSUER: ${{ secrets.ACCESS_TOKEN_ISSUER }}
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: ${{ env.PG_DB }}
+          POSTGRES_USER: ${{ env.PG_USER }}
+          POSTGRES_PASSWORD: ${{ env.PG_PWD }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ${{ env.PG_USER }}"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout repository
@@ -50,7 +53,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm run lint
