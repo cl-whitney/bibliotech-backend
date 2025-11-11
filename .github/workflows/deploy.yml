@@ -43,16 +43,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js with pnpm
         uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'pnpm'
-
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          echo "$(npm bin -g)" >> $GITHUB_PATH
+          check-latest: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
