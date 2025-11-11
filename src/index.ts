@@ -38,6 +38,7 @@ app.use(
 		origin: [
 			/^http:\/\/127\.0\.0\.1:\d+$/, /^http:\/\/localhost:\d+$/,
 			"https://cl-whitney.github.io",
+			"https://bibliotech.app", 
 		],
 		credentials: true,
 	}),
