@@ -1,7 +1,7 @@
 import { client } from "../database/client.js";
 import type { Tag } from "../types/types.js";
 
-export class TagDataMapper {
+export default new (class TagDataMapper {
 	async findTagById(id: number): Promise<Tag | null> {
 		const { rows } = await client.query("SELECT * FROM tag WHERE id = $1", [
 			id,
@@ -23,11 +23,11 @@ export class TagDataMapper {
 		return rows[0];
 	}
 
-	async updateTag(data: 
-		{ id: number; 
-			name: string; 
-			updated_at?: string }
-		): Promise<Tag | null> {
+	async updateTag(data: {
+		id: number;
+		name: string;
+		updated_at?: string;
+	}): Promise<Tag | null> {
 		const { rows } = await client.query(
 			`UPDATE tag 
 			 SET name = $1, updated_at = $2 
@@ -40,4 +40,4 @@ export class TagDataMapper {
 	async deleteTag(id: number): Promise<void> {
 		await client.query("DELETE FROM tag WHERE id = $1", [id]);
 	}
-}
+})();

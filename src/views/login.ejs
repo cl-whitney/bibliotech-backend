@@ -1,0 +1,27 @@
+<%- include ('partials/head') %>
+
+<main class="main-login">
+    <form class="form-container" action="/admin/login" method="POST">
+        <div class="form-input-container">
+            <label class="form-label" for="email">Email :</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="email@domain.com" required>
+        </div>
+
+        <div class="form-input-container">
+            <label class="form-label" for="password">Mot de passe :</label>
+            <input class="form-input" type="password" id="password" name="password" placeholder="*********" required>
+        </div>
+
+        <input class="log-btn login-btn" type="submit" value="Se connecter">
+
+        <% if (errors && errors.length > 0) { %>
+            <ul>
+                <% errors.forEach(function(error) { %>
+                    <li><%= error %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </form>
+</main>
+
+<%- include ('partials/foot') %>
