@@ -43,17 +43,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Installer Node et configurer cache pnpm
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
           cache: 'pnpm'
 
+      # Installer pnpm et mettre le binaire dans le PATH
       - name: Install pnpm
         run: |
           npm install -g pnpm
           echo "$(npm bin -g)" >> $GITHUB_PATH
 
+      # Vérification du PATH et de pnpm
       - name: Debug PATH and pnpm
         run: |
           echo "PATH=$PATH"
@@ -62,6 +65,7 @@ jobs:
           which pnpm || echo "pnpm not found"
           pnpm -v || echo "pnpm version not available"
 
+      # Installer les dépendances
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
