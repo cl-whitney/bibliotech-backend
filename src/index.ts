@@ -37,7 +37,8 @@ app.use(
 		// ],
 		origin: [
 			/^http:\/\/127\.0\.0\.1:\d+$/, /^http:\/\/localhost:\d+$/,
-			"https://cl-whitney.github.io",
+			/^http:\/\/localhost:\d+$/, 
+      		"https://cl-whitney.github.io",
 		],
 		credentials: true,
 	}),
