@@ -11,30 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PG_USER: ${{ secrets.PG_USER }}
-      PG_DB: ${{ secrets.PG_DB }}
-      PG_PWD: ${{ secrets.PG_PWD }}
-      PG_URL: ${{ secrets.PG_URL }}
-      SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-      ACCESS_TOKEN_ALGORITHM: ${{ secrets.ACCESS_TOKEN_ALGORITHM }}
-      ACCESS_TOKEN_TYPE: ${{ secrets.ACCESS_TOKEN_TYPE }}
-      ACCESS_TOKEN_EXPIRES_IN_MS: ${{ secrets.ACCESS_TOKEN_EXPIRES_IN_MS }}
-      ACCESS_TOKEN_AUDIENCE: ${{ secrets.ACCESS_TOKEN_AUDIENCE }}
-      ACCESS_TOKEN_ISSUER: ${{ secrets.ACCESS_TOKEN_ISSUER }}
+      PG_URL: postgres://bibliotech:bibliotech@db:5432/bibliotech
+      PG_USER: bibliotech
+      PG_DB: bibliotech
+      PG_PWD: bibliotech
+      SESSION_SECRET: SECRET
+      SECRET_KEY: SECRET
+      ACCESS_TOKEN_SECRET: MonSuperTokenSecretUltraSecure
+      ACCESS_TOKEN_ALGORITHM: HS256
+      ACCESS_TOKEN_TYPE: Bearer
+      ACCESS_TOKEN_EXPIRES_IN_MS: 3600000
+      ACCESS_TOKEN_AUDIENCE: bibliotech_frontend
+      ACCESS_TOKEN_ISSUER: bibliotech_frontend_api
 
     services:
       postgres:
         image: postgres:16-alpine
         env:
-          POSTGRES_DB: ${{ env.PG_DB }}
-          POSTGRES_USER: ${{ env.PG_USER }}
-          POSTGRES_PASSWORD: ${{ env.PG_PWD }}
+          POSTGRES_DB: bibliotech
+          POSTGRES_USER: bibliotech
+          POSTGRES_PASSWORD: bibliotech
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U ${{ env.PG_USER }}"
+          --health-cmd "pg_isready -U bibliotech"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
