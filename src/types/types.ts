@@ -53,5 +53,9 @@ export interface SnippetHasTag {
 	updated_at?: Date;
 }
 
+export interface JwtPayload {
+  id: number;
+  email: string;
+}
 // Session-safe user type (we should never store password in session)
 export type SessionUser = Omit<User, "password">;

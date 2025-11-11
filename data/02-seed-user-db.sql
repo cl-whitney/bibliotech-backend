@@ -1,6 +1,5 @@
 BEGIN;
 
--- Insert users
 INSERT INTO "user" (first_name, last_name, password, email, role)
 VALUES
 ('Liam', 'Vernon', '6c27ffaf8246e8e47d228034e873d5bb4714ac0973a48283c1c1ef9f47a0454c65e9a335f6ce1b7aad5ca0d60fcc67d7ac604978fae7ea7956c35813c694c170.d207b1dfb05da7880310d1ca90cd1dc8', 'liam@example.com', 'admin'),

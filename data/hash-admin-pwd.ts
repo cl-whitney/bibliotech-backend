@@ -2,8 +2,8 @@ import "dotenv/config";
 import Scrypt from "../src/helpers/scrypt.js";
 
 async function make() {
-	// Admin password to hash
-	// const plain = 'MonSuperMdpAdmin123!';
+	/** Admin password to hash 
+	const plain = 'MonSuperMdpAdmin123!'; */
 
 	// Member password to hash
 	const plain = "MonSuperMdpAdmin321!";

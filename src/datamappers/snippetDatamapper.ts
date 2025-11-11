@@ -122,7 +122,6 @@ export default new (class SnippetDataMapper {
 		);
 		const newSnippet = rows[0];
 
-		// Ajouter les tags
 		if (tagIds.length > 0) {
 			const values = tagIds.map((tagId) => `(${newSnippet.id}, ${tagId})`).join(", ");
 			await client.query(`INSERT INTO snippets_has_tags (snippet_id, tag_id) VALUES ${values}`);
@@ -160,7 +159,6 @@ export default new (class SnippetDataMapper {
 
 		if (!updatedSnippet) return null;
 
-		// Mettre à jour les tags
 		if (data.tagIds) {
 			await client.query(`DELETE FROM snippets_has_tags WHERE snippet_id = $1`, [data.id]);
 			if (data.tagIds.length > 0) {
@@ -174,9 +172,7 @@ export default new (class SnippetDataMapper {
 
 
 	async deleteSnippet(id: number): Promise<void> {
-		// Supprimer les relations tags
 		await client.query(`DELETE FROM snippets_has_tags WHERE snippet_id = $1`, [id]);
-		// Supprimer le snippet
 		await client.query(`DELETE FROM snippet WHERE id = $1`, [id]);
 	}
 })();
