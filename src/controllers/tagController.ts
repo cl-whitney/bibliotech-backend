@@ -1,5 +1,5 @@
-import tagDataMapper from "../datamappers/tagDatamapper.js";
 import type { Request, Response } from "express";
+import tagDataMapper from "../datamappers/tagDatamapper.js";
 import type { Tag } from "../types/types.js";
 
 const tagController = {

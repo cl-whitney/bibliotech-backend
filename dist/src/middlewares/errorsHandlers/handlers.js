@@ -5,14 +5,13 @@
  * @returns A new request handler that catches errors and forwards them to Express error handling middleware.
  */
 function catchErrors(funcToExecute) {
-    return async (req, res, next) => {
-        try {
-            await funcToExecute(req, res, next);
-        }
-        catch (error) {
-            next(error);
-        }
-    };
+	return async (req, res, next) => {
+		try {
+			await funcToExecute(req, res, next);
+		} catch (error) {
+			next(error);
+		}
+	};
 }
 /**
  * Express middleware for handling errors and sending a standardized JSON response.
@@ -27,10 +26,10 @@ function catchErrors(funcToExecute) {
  * If `err.message` is not provided, returns a generic French error message.
  */
 function errorHandler(err, _req, res, _next) {
-    const status = err.statusCode || 500;
-    res.status(status).json({
-        message: err.message || "Une erreur inconnue s'est produite",
-        statusCode: status,
-    });
+	const status = err.statusCode || 500;
+	res.status(status).json({
+		message: err.message || "Une erreur inconnue s'est produite",
+		statusCode: status,
+	});
 }
 export { errorHandler, catchErrors };

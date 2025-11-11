@@ -1,4 +1,5 @@
 import { randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
+
 const Scrypt = {
 	/**
 	 * Hashes a password using scrypt with a random salt.

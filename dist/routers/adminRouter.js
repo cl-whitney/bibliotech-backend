@@ -1,11 +1,12 @@
 import { Router } from "express";
 import adminController from "../controllers/adminController.js";
-import snippetController from "../controllers/snippetController.js";
-import userController from "../controllers/userController.js";
-import tagController from "../controllers/tagController.js";
 import languageController from "../controllers/languageController.js";
+import snippetController from "../controllers/snippetController.js";
+import tagController from "../controllers/tagController.js";
+import userController from "../controllers/userController.js";
 import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
 import isAdmin from "../middlewares/isAdmin.js";
+
 const adminRouter = Router();
 adminRouter.get("/login", adminController.showLoginForm);
 // Handle login submission

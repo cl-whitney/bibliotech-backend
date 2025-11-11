@@ -1,9 +1,8 @@
+import type { NextFunction, Request, Response } from "express";
 import userDataMapper from "../datamappers/userDatamapper.js";
-import type { Request, Response } from "express";
-import type { User } from "../types/types.js";
 import Scrypt from "../helpers/scrypt.js";
 import validateEmail from "../helpers/validateEmail.js";
-import type { NextFunction } from "express";
+import type { User } from "../types/types.js";
 
 const registerController = {
 	async signup(

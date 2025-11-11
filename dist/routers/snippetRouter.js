@@ -2,6 +2,7 @@ import { Router } from "express";
 import snippetController from "../controllers/snippetController.js";
 import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
 import isAuth from "../middlewares/isAuth.js";
+
 const snippetRouter = Router();
 snippetRouter.get("/", catchErrors(snippetController.index));
 snippetRouter.get("/:id", isAuth, catchErrors(snippetController.show));

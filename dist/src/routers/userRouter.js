@@ -2,6 +2,7 @@ import { Router } from "express";
 import userController from "../controllers/userController.js";
 import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
 import isAuth from "../middlewares/isAuth.js";
+
 const usersRouter = Router();
 /** Get all users
  * @swagger

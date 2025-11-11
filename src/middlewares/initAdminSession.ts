@@ -1,6 +1,4 @@
 import type { NextFunction, Request, Response } from "express";
-import type { Role } from "../types/types.js";
-
 import type { SessionUser } from "../types/express-session.js";
 
 declare module "express-session" {

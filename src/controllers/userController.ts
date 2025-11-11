@@ -1,5 +1,5 @@
-import userDataMapper from "../datamappers/userDatamapper.js";
 import type { Request, Response } from "express";
+import userDataMapper from "../datamappers/userDatamapper.js";
 
 const userController = {
 	async index(_req: Request, res: Response) {

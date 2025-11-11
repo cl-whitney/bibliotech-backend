@@ -2,6 +2,7 @@ import { Router } from "express";
 import languageController from "../controllers/languageController.js";
 import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
 import isAuth from "../middlewares/isAuth.js";
+
 const languageRouter = Router();
 /** Get all languages
  * @swagger

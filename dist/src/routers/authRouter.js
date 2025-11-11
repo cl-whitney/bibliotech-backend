@@ -2,6 +2,7 @@ import { Router } from "express";
 import loginController from "../controllers/loginController.js";
 import signupController from "../controllers/signupController.js";
 import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
+
 const authRouter = Router();
 /** Signup
  * @swagger

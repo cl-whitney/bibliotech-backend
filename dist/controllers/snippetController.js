@@ -1,4 +1,5 @@
 import snippetDataMapper from "../datamappers/snippetDatamapper.js";
+
 const snippetController = {
 	async index(_req, res) {
 		const snippets = await snippetDataMapper.findAllSnippets();

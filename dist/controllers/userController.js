@@ -1,4 +1,5 @@
 import userDataMapper from "../datamappers/userDatamapper.js";
+
 const userController = {
 	async index(_req, res) {
 		const users = await userDataMapper.findAllUsers();

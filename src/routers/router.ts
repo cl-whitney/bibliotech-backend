@@ -1,11 +1,11 @@
-import { Router, type Request, type Response } from "express";
-import adminRouter from "./adminRouter.js";
-import snippetRouter from "./snippetRouter.js";
-import userRouter from "./userRouter.js";
-import tagRouter from "./tagRouter.js";
-import languageRouter from "./languageRouter.js";
-import authRouter from "./authRouter.js";
+import { Router } from "express";
 import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
+import adminRouter from "./adminRouter.js";
+import authRouter from "./authRouter.js";
+import languageRouter from "./languageRouter.js";
+import snippetRouter from "./snippetRouter.js";
+import tagRouter from "./tagRouter.js";
+import userRouter from "./userRouter.js";
 
 const router = Router();
 

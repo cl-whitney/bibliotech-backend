@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import auth from "../helpers/jwt.js";
+
 const { audience, expiresIn, issuer, secret, type } = auth.accessToken;
 const algorithm = auth.accessToken.algorithm;
 export function generateAuthenticationToken(user) {
@@ -66,7 +67,7 @@ function createExpirationDate(expiresIn) {
 	}
 	// Fallback: try to parse as milliseconds
 	const ms = Number(expiresIn);
-	if (!isNaN(ms)) {
+	if (!Number.isNaN(ms)) {
 		return new Date(now + ms);
 	}
 	throw new Error("Invalid expiresIn format");

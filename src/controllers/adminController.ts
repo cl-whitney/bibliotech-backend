@@ -4,8 +4,7 @@ import adminDatamapper from "../datamappers/adminDatamapper.js";
 import userDatamapper from "../datamappers/userDatamapper.js";
 import Scrypt from "../helpers/scrypt.js";
 import validateEmail from "../helpers/validateEmail.js";
-import { Role } from "../types/types.js";
-import { User, type SessionUser } from "../types/types.js";
+import { Role, type SessionUser } from "../types/types.js";
 
 const adminController = {
 	async index(_req: Request, res: Response) {

@@ -1,4 +1,5 @@
 import { verifyJwtToken } from "../helpers/token.js";
+
 function isAuth(req, res, next) {
 	const accessToken = req.headers.authorization?.split("Bearer ")[1];
 	if (!accessToken) {

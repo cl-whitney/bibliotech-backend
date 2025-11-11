@@ -1,4 +1,5 @@
 import languageDataMapper from "../datamappers/languageDatamapper.js";
+
 const languageController = {
 	async index(_req, res) {
 		const languages = await languageDataMapper.findAllLanguages();

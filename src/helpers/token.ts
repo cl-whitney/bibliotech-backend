@@ -78,7 +78,7 @@ function createExpirationDate(expiresIn: string | number): Date {
 
 	// Fallback: try to parse as milliseconds
 	const ms = Number(expiresIn);
-	if (!isNaN(ms)) {
+	if (!Number.isNaN(ms)) {
 		return new Date(now + ms);
 	}
 

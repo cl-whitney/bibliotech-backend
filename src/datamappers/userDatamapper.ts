@@ -1,6 +1,6 @@
 import { client } from "../database/client.js";
-import type { User } from "../types/types.ts";
 import Scrypt from "../helpers/scrypt.js";
+import type { User } from "../types/types.ts";
 
 export default new (class userDataMapper {
 	async findUserById(id: number): Promise<User | null> {

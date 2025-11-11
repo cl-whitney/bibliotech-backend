@@ -4,6 +4,7 @@ import userDatamapper from "../datamappers/userDatamapper.js";
 import Scrypt from "../helpers/scrypt.js";
 import validateEmail from "../helpers/validateEmail.js";
 import { Role } from "../types/types.js";
+
 const adminController = {
 	async index(_req, res) {
 		const users = await userDatamapper.findAllUsers();

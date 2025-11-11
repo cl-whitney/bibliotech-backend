@@ -2,6 +2,7 @@ import { Router } from "express";
 import tagController from "../controllers/tagController.js";
 import { catchErrors } from "../middlewares/errorsHandlers/handlers.js";
 import isAuth from "../middlewares/isAuth.js";
+
 const tagRouter = Router();
 /** Get all tags
  * @swagger

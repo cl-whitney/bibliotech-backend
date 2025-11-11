@@ -1,6 +1,7 @@
 import userDataMapper from "../datamappers/userDatamapper.js";
 import Scrypt from "../helpers/scrypt.js";
 import validateEmail from "../helpers/validateEmail.js";
+
 const registerController = {
 	async signup(req, res, _next) {
 		const { first_name, last_name, email, password, role } = req.body;

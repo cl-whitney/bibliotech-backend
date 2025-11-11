@@ -1,5 +1,5 @@
-import snippetDataMapper from "../datamappers/snippetDatamapper.js";
 import type { Request, Response } from "express";
+import snippetDataMapper from "../datamappers/snippetDatamapper.js";
 import type { Snippet } from "../types/types.js";
 
 const snippetController = {

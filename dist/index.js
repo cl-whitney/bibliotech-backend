@@ -1,11 +1,12 @@
 import express from "express";
 import "dotenv/config";
-import { join, dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import cors from "cors";
 import session from "express-session";
 import { setupSwagger } from "./config/swagger.js";
 import router from "./routers/router.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();

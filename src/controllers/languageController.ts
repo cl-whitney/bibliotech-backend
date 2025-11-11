@@ -1,5 +1,5 @@
-import languageDataMapper from "../datamappers/languageDatamapper.js";
 import type { Request, Response } from "express";
+import languageDataMapper from "../datamappers/languageDatamapper.js";
 
 const languageController = {
 	async index(_req: Request, res: Response) {

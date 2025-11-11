@@ -3,6 +3,7 @@ import userDatamapper from "../datamappers/userDatamapper.js";
 import Scrypt from "../helpers/scrypt.js";
 import { generateAuthenticationToken } from "../helpers/token.js";
 import validateEmail from "../helpers/validateEmail.js";
+
 const loginController = {
 	async login(req, res, _next) {
 		const { email, password } = req.body;

@@ -1,4 +1,5 @@
 import tagDataMapper from "../datamappers/tagDatamapper.js";
+
 const tagController = {
 	async index(_req, res) {
 		const tags = await tagDataMapper.findAllTags();
