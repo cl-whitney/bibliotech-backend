@@ -1,10 +1,20 @@
 import 'dotenv/config';
 import pg from "pg";
 
-const client = new pg.Client(process.env.PG_URL);
+const client = new pg.Client({
+  connectionString: process.env.PG_URL,
+  ssl: {
+    rejectUnauthorized: false, 
+  },
+});
 
 async function connectToDb() {
-	await client.connect();
+  try {
+    await client.connect();
+    console.log("Connected to the database!");
+  } catch (err) {
+    console.error("Failed to connect to DB:", err);
+  }
 }
 
 connectToDb();
