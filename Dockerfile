@@ -7,6 +7,8 @@ COPY package.json ./
 
 RUN npm install -g pnpm nodemon ts-node typescript
 
+RUN pnpm install --frozen-lockfile
+
 COPY . .
 
 RUN pnpm run build
